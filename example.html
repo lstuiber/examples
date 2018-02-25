@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<header>
+</header>
+<head>
+</head>
+<body>
+  <p>Hey</p>
+  <script>
+function computerPlay(){
+  var name = "ready";
+  var pick = Math.floor(Math.random()*3)+1;
+  if (pick === 1){
+    return 'rock';
+  } else if (pick === 2){
+
+    return 'paper';
+  }
+  else if (pick === 3){
+
+    return 'scissors';
+  }
+  else {
+    alert("Not Working");
+  }
+  }
+ function round(playerSel, computerSelection){
+
+   let compW = 0;
+   let playerW = 0;
+   let ties = 0;
+   let compselect = computerPlay().toLowerCase();
+   let playerWin = "Player: "+playerSel+" beats "+"Computer: "+compselect+"!";
+   let compWin = "Computer: "+compselect+" beats "+"Player: "+playerSel+"!";
+   let tie = "Player: "+playerSel+" ties "+"Computer: "+compselect+"!";
+   if (playerSel == "rock" && compselect == "scissors" || playerSel == "scissors" && compselect == "paper" || playerSel == "paper" && compselect == "rock"){
+     alert(playerWin);
+     return playerW++;
+   }
+   else if (compselect == "rock" && playerSel == "scissors" || compselect == "scissors" && playerSel == "paper" || compselect == "paper" && playerSel == "rock"){
+     alert(compWin);
+     return compW++;
+   }
+   else {
+     alert(tie);
+     return ties++;
+   }
+ }
+
+
+
+
+  for (var i=0; i<5; i++){
+    let selection = prompt("Rock, paper, or scissors");
+    let playersel = selection.toLowerCase();
+    const comp = computerPlay();
+    console.log(round(playersel, comp));
+
+
+
+}
+
+  </script>
+</body>
+</html>

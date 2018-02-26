@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <div id="container">
+    <button id="rock" class="button">Rock</button>
+    <button id="paper" class="button">Paper</button>
+    <button id= "scissors" class="button">Scissors</button>
+  </div>
+  <div id="pcontainer"><p>Player Wins</p><br/><p id="pwins">0</p></div>
+  <div id="ccontainer"><p>Computer Wins</p><br/><p id="cwins">0</p></div>
+  <div id="tcontainer"><p>Ties</p><br/><p id="ties">0</p></div>
+  <script>
+  function computerPlay(){
+    let cp = (Math.floor(Math.random()*3)+1);
+    if (cp === 1){
+      choice = "rock";
+    }
+    else if (cp === 2){
+      choice = "paper";
+    }
+    else{
+      choice = "scissors";
+    }
+    return choice;
+  }
+
+//let cp = computerPlay();
+//console.log(cp);
+  function round(e){
+const cp = computerPlay();
+var pp = event.target.textContent.toLowerCase();
+    if (cp === "rock" && pp === "paper" || cp === "paper" && pp === "scissors" || cp === "scissors" && pp === "rock"){
+      //alert("Player wins! "+pp+" beats "+cp);
+      return game(1, cp, pp);
+    }
+     else if (cp === "rock" && pp === "scissors" || cp === "paper" && pp === "rock" || cp === "scissors" && pp === "paper"){
+    //  alert("Computer wins! "+cp+" beats "+pp);
+      return game(2, cp, pp);
+    }
+    else {
+      return game(3, cp, pp);
+    }
+
+}
+let winp = 0;
+let winc = 0;
+let tie = 0;
+
+//
+  let buttons = document.querySelectorAll('button');
+
+document.getElementById('rock').addEventListener('click', (e) => {
+  round(e)
+});
+document.getElementById('paper').addEventListener('click', (e) => {
+  round(e)
+});
+document.getElementById('scissors').addEventListener('click', (e) => {
+  round(e)
+});
+function game(num, cp, pp){
+  const container = document.querySelector("#container");
+  const ccontainer = document.querySelector("#ccontainer");
+  const pcontainer = document.querySelector("#pcontainer");
+  const div = document.createElement("div");
+  const pw = document.querySelector("#pwins");
+  const cw = document.querySelector("#cwins");
+  const ties = document.querySelector("#tcontainer");
+  const tw = document.querySelector("#ties");
+if (num == 1){
+  //alert("Player wins! "+pp+" beats "+cp);
+  winp+= 1;
+  if (winp == 5){
+    pw.textContent = winc;
+    pcontainer.appendChild(pw);
+    alert("Player Wins!")}
+    else {
+  pw.textContent = winc;
+  pcontainer.appendChild(pw);
+}
+}
+else if (num == 2){
+//  alert("Computer wins! "+cp+" beats "+pp);\
+ winc+= 1;
+ if (winc == 5){
+   cw.textContent = winc;
+   ccontainer.appendChild(cw);
+   alert("Computer Wins!");
+ } else {
+ cw.textContent = winc;
+ ccontainer.appendChild(cw);
+}
+}
+else if (num == 3){
+//  alert("It's a tie!")
+
+ tie+= 1;
+ tw.textContent = tie;
+ ties.appendChild(tw);
+
+}
+
+
+
+}
+
+//alert("Player wins: "+winp+" Computer wins: "+winc+" Ties: "+tie);
+  </script>
+</body>
+
+</html>
